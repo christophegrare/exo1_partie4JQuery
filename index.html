@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>exercice 1 partie 4</title>
+</head>
+<body>
+  <select class="choix" name="">
+    <option>Pierre</option>
+    <option>Feuille</option>
+    <option>Ciseaux</option>
+  </select>
+  <p id="gg">nombre de victoire</p>
+  <p id="egal">égalité</p>
+  <p id="loose">nombre de défaite</p>
+  <p id="figth">nombre de shifumi</p>
+  <button type="button" name="button" id="shifumi">Shifumi !</button>
+  <script src="jquery-2.2.4.js"></script>
+  <script>/*Créer une optionste avec trois éléments (Pierre, Feuille, Ciseaux).
+  Ajouter un bouton « Shifumi ! ». Lorsque l'on clique sur « Shifumi ! »,
+  choisir un élément au hasard (Pierre, Feuille ou Ciseaux).
+  Le comparer à l'élément choisi par le joueur pour voir qui a gagné entre l'humain et la machine.
+  Bonus : Ajouter un compteur de victoires et de défaites et
+  afficher le pourcentage de victoire contre l'ordinateur.*/
+  $(document).ready(function(){
+    //declaration des variable
+    var wins = 0;
+    var lost = 0;
+    var number = 0;
+    var egal = 0;
+    //utilise un click pour lancer
+    $('#shifumi').click(function(){
+      //variable designe le random qui suit
+      var shifumi = ['Pierre', 'Feuille', 'Ciseaux'];
+      //var ordi  est defini par var shifumi retoune random
+      var ordi = shifumi[Math.floor(Math.random() * 3)];
+      var player = $('.choix').find(':selected').text();
+      number++;
+      $('#figth').text('nombre de shifumi : ' + number);
+      // si il y a egalite affiche l'alert
+      if (ordi == player){
+        egal++;
+        $('#egal').text('égalité : ' + egal);
+        alert('égalité');
+      }else if (ordi == 'Pierre' && player == 'Ciseaux' || ordi == 'Feuille' && player == 'Pierre' || ordi == 'Ciseaux' && player == 'Feuille') {
+        lost++;
+        //sinon l'ordinateur gagne affiche l' alert
+        $('#loose').text('nombre de défaite : ' + lost);
+        alert('vous avez perdu');
+      }else {
+        wins++;
+        $('#gg').text('nombre de victoire ; ' + wins);
+        alert('vous avez gagné');// sinon vous avez gagné
+      }
+      $('#texte').text(ordi);
+    });
+  });
+  </script>
+</body>
+</html>
